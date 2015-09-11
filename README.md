@@ -6,7 +6,7 @@
 
 [Bootstrap](http://getbootstrap.com) is a toolkit from Twitter designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
-http://twitter.github.com/bootstrap/
+http://getbootstrap.com/
 
 Bootstrap Wysihtml5 is a plugin for Bootstrap designed by James Hollingworth. It provides a stylish wysiwyg editor for Bootstrap. We use Christian Sterzl's fork.
 
@@ -15,6 +15,8 @@ https://github.com/bootstrap-wysiwyg/bootstrap3-wysiwyg
 bootstrap-wysihtml5-rails project integrates it with Rails 3 assets pipeline.
 
 https://github.com/Nerian/bootstrap-wysihtml5-rails
+
+__This repo is only for packaging bootstrap-wysihtml5 into a ruby gem. If yor Pull Request is about changing bootstrap-wysihtml5 (any file in the 'vendor' folder) please create it in their repository, not here.__
 
 __Latest version with Bootstrap 2 support was `0.3.1.24`. New releases only package Bootstrap 3 support.__
 
@@ -41,6 +43,11 @@ Bootstrap-wysihtml5 depends on bootstrap and jQuery.
 app/assets/stylesheets/application.css
 ``` css
 *= require bootstrap-wysihtml5
+```
+
+if you are using SASS: app/assets/stylesheets/application.scss
+``` scss
+@import "bootstrap-wysihtml5/bootstrap3-wysihtml5";
 ```
 
 app/assets/javascripts/application.js
@@ -94,6 +101,11 @@ There is `simple_form` input which you can apply via `as: :wysihtml5` option.
 ```erb
 <%= f.input :content, as: :wysihtml5 %>
 ```
+Or with [bootstrap3-wysiwyg](https://github.com/bootstrap-wysiwyg/bootstrap3-wysiwyg#options) options
+
+```erb
+<%= f.input :content, as: :wysihtml5, wysihtml5: { locale: "es-ES" } %>
+```
 
 ## If using Turbolinks
 
@@ -101,6 +113,31 @@ There is `simple_form` input which you can apply via `as: :wysihtml5` option.
 $(document).on('page:load', function(){
   window['rangy'].initialized = false
 })
+```
+
+## Passing options
+
+To activate direct html editing and disable blockquote:
+```
+  $('.wysihtml5').wysihtml5({'toolbar': {'blockquote': false, 'html': true}})
+```
+
+Toolbal default options are:
+
+```
+toolbar: {
+      'font-styles': true,
+      'color': false,
+      'emphasis': {
+        'small': true
+      },
+      'blockquote': true,
+      'lists': true,
+      'html': false,
+      'link': true,
+      'image': true,
+      'smallmodals': false
+    }
 ```
 
 ## License
